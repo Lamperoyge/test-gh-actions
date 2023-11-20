@@ -1,0 +1,15 @@
+
+[tool.poetry]
+name = "CodeReviewTool"
+version = "0.1.0"
+description = "A tool to perform code reviews on uncommitted changes using OpenAI API."
+authors = ["Your Name <you@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+openai = "^0.10.2"
+python-dotenv = "^0.19.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
