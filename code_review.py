@@ -10,6 +10,8 @@ def get_changed_code():
     diff = subprocess.check_output(['git', 'diff']).decode()
     return diff
 
+
+# // TODO: refactor this function to be more readable
 def chunk_diff(diff, max_length):
     chunks = []
     current_chunk = ""
@@ -28,8 +30,8 @@ def openai_code_review(chunks):
     feedback = ""
     for chunk in chunks:
         response = openai.Completion.create(
-            engine="code-davinci-002",
-            prompt="Review these code changes: \n\n" + chunk,
+            engine="gpt-3.5-turbo-instruct",
+            prompt="Perform a code review for these changes. Be specific where you can detect possible bugs, ways to improve the code, make sure it respects the best coding standards: \n\n" + chunk,
             max_tokens=150
         )
         feedback += response.choices[0].text.strip() + "\n\n"
