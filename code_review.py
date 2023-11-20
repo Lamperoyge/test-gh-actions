@@ -31,7 +31,7 @@ def openai_code_review(chunks):
     for chunk in chunks:
         response = openai.Completion.create(
             engine="gpt-3.5-turbo-instruct",
-            prompt="Perform a code review for these changes. Be specific where you can detect possible bugs, ways to improve the code, make sure it respects the best coding standards: \n\n" + chunk,
+            prompt="Perform a code review for these changes. Be specific where you can detect possible bugs, ways to improve the code, make sure it respects the best coding standards such as syntax, logic, best practices etc, DRY code, check for infinite loops and errors. For each comment, specify the file path and the line in this format: filename.py - Line 2: \n\n" + chunk,
             max_tokens=150
         )
         feedback += response.choices[0].text.strip() + "\n\n"
